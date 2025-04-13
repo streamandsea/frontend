@@ -42,6 +42,46 @@ router.get("/home/dataCount", (req, res) => {
     )
 })
 
+/* 
+   首页 -今日 -订单统计
+*/
+router.get("/home/orderinfo", (req, res) => {
+    res.send(
+        Mock.mock({
+        info: "订单统计信息",
+        success: true,
+        list: {
+            "orderCount|1-100000": 1,
+            "curOrderCount|1-1000": 1,
+            count: function () {
+            if (this.curOrderCount > this.orderCount) {
+                [this.orderCount, this.curOrderCount] = [
+                this.curOrderCount,
+                this.orderCount,
+                ];
+            }
+            },
+            "money|1-200000": 1,
+            "curMoney|1-1000": 1,
+            moneyfun: function () {
+            if (this.curMoney > this.money) {
+                [this.money, this.curMoney] = [this.curMoney, this.money];
+            }
+            },
+            "collect|1-99999": 1,
+            "curCollect|1-999": 1,
+            collectfun: function () {
+            if (this.curCollect > this.collect) {
+                [this.collect, this.curCollect] = [this.curCollect, this.collect];
+            }
+            },
+            department: "",
+            branchSchool: "",
+        },
+        })
+);
+});
+
 // const vipLogin = require("./login/data/vip_login.json");
 // const adminLogin = require("./login/data/admin_login.json");
 // const adminPermission = require("./login/data/admin_permission.json");
