@@ -16,6 +16,12 @@ const api = {
      */
     orderInfo() {
         return axios.get(base.orderInfo);
+    },
+    /**
+     * 产品列表
+     */
+    productList(params) {
+        return axios.get(base.productList,{params});
     }
 };
 

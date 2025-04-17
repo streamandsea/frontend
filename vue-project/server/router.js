@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // 导入数据库 sqlFn('sql',[],res=>{})
-const sqlFun = require('./mysql');
+const sqlFn = require('./mysql');
 // 图片需要的模块
 const multer = require('multer');
 const fs = require('fs');
@@ -81,6 +81,102 @@ router.get("/home/orderinfo", (req, res) => {
         })
 );
 });
+
+/**
+ * 商品列表
+ */
+router.get("/goods/productList", (req, res) => {
+    /*
+    // const page = req.query.page || 1;
+    // const sqlLen = "select * from project where id";
+    // sqlFn(sqlLen, null, (data) => {
+    //   let len = data.length;
+    //   const sql =
+    //     "select * from project order by id desc limit 8 offset " + (page - 1) * 8;
+    //   sqlFn(sql, null, (result) => {
+    //     if (result.length > 0) {
+    //       res.send({
+    //         status: 200,
+    //         data: result,
+    //         pageSize: 8,
+    //         total: len,
+    //       });
+    //     } else {
+    //       res.send({
+    //         status: 500,
+    //         msg: "暂无数据",
+    //       });
+    //     }
+    //   });
+    // });
+    */
+    
+    res.send(
+        Mock.mock({
+            status: 200,
+            pageSize: 8,
+            total: 60,
+            info: "数据统计",
+            success: true,
+            data: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                },{
+                    date: '2017-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2018-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2019-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2020-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2021-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2022-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2023-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2024-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2025-04-13',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }],
+                
+        })
+    )
+});
+
+
 
 // const vipLogin = require("./login/data/vip_login.json");
 // const adminLogin = require("./login/data/admin_login.json");

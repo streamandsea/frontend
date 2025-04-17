@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home">
         <h2>首页</h2>
     </div>
 </template>
@@ -43,5 +43,7 @@ export  default {
 </script>
 
 <style>
-
+.home {
+    background-color: yellow;
+}
 </style>

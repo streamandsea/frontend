@@ -32,20 +32,21 @@ export default {
 <style lang="less" scoped>
 
 .header {
-    height: 50px;
     background: #1e78bf;
-    color: #fff;
+    height: 50px;
     line-height: 50px;
+    color: #fff;
+    width: 100%;
     display: flex;
+    
 
     .open {
-        .iconfont {
-            font-size: 22px;    
+        i {
+            font-size: 24px;
             cursor: pointer;
         }
-        
     }
-    
+
 }
 
 </style>

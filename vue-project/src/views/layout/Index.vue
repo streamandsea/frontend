@@ -5,7 +5,7 @@
              <Menu :isCollapse="isCollapse"></Menu>
          </div>
          <!-- 右侧内容 -->
-         <div class="content" :class="{small: isCollapse}">
+         <div class="content" :class="{active: isCollapse}">
              <Content @changeShow="changeShow" :isCollapse="isCollapse"></Content>
          </div>
     </div>
@@ -41,7 +41,7 @@ export default {
 <style lang="less" scoped>
 
 .layout {
-    // display: flex;
+    
     .menu {
         // width: 200px;
         background: #112f50;
@@ -59,8 +59,10 @@ export default {
         // flex: 1;
         padding-top: 0px;
         padding-left: 200px;
+        transition: .5s;
+        
     }
-    .small {
+    .active {
         padding-left: 64px;
     }
 }
