@@ -17,16 +17,15 @@ import Menu from './menu/Index.vue'
 import Content from './content/Index.vue'
 
 export default {
-
-    // 注册子组件
-    components: {
-        Menu,
-        Content
-    },
     data() {
         return {
             isCollapse: false
         }
+    },
+    // 注册子组件
+    components: {
+        Menu,
+        Content
     },
     methods: {
         changeShow() {
@@ -43,24 +42,20 @@ export default {
 .layout {
     
     .menu {
-        // width: 200px;
-        background: #112f50;
         position: fixed;
         left: 0;
         top: 0;
         bottom: 0;
-        // padding-left: 10px;
+        background: #112f50;
+        
         /deep/ .el-menu {
             border-right: none;
         }
     }
     
     .content {
-        // flex: 1;
-        padding-top: 0px;
         padding-left: 200px;
-        transition: .5s;
-        
+        transition: all .5s;
     }
     .active {
         padding-left: 64px;

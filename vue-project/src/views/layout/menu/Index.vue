@@ -70,19 +70,14 @@ export default {
 
 <style lang="less" scoped>
 
-.el-menu{
-    // border-right: 0;
-
-    /deep/ .is-active{
-        background: #1e78bf !important;
-        color: #fff !important;
-    }
-
-    .el-menu-vertical-demo:not(.el-menu--collapse) {
+.el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
         min-height: 400px;
-    }
+}
 
+/deep/ .is-active{
+    background: #1e78bf !important;
+    color: #fff !important;
 }
 
 </style>
