@@ -55,7 +55,7 @@ export default {
     
     .content {
         padding-left: 200px;
-        transition: all .5s;
+        transition: all .2s;
     }
     .active {
         padding-left: 64px;

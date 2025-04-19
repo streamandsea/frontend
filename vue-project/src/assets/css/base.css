@@ -1,18 +1,20 @@
 @import url('https://at.alicdn.com/t/font_2448847_ogyed8on8j.css');
-h1,h2,h3,h4,p,ul,li{
-    margin: 0;
-    padding: 0;
+
+ul {
+    list-style: none;
 }
-ul{
-    list-style: none
-}
-a{
+
+a {
     text-decoration: none;
 }
-img{
+
+img {
     vertical-align: middle;
 }
-body{
+
+body {
     font-size: 14px;
-    font-family: '微软雅黑','Arial Narrow', Arial,sans-serif;
+    font-family: 'Arial Narrow', Arial, sans-serif; /* 优化字体设置 */
+    margin: 0; /* 移除默认外边距 */
+    padding: 0; /* 移除默认内边距 */
 }
