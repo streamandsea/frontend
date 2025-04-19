@@ -10,7 +10,9 @@
             el-input 输入框
             el-date-picker 日期组件
          -->
-        <div class="header">
+        
+         <Breadcrumb></Breadcrumb>
+         <div class="header">
             <div class="search">
                 <el-form :inline="true" :model="formInline" class="demo-form-inline">
                     <el-form-item label="产品名称">
@@ -25,13 +27,12 @@
                 </el-form>
             </div>
             <div class="add-goods">
-                <el-button type="warning" icon="el-icon-plus" @click="addGoods">添加商品</el-button>
-                <el-button type="danger" icon="el-icon-delete"  @click="onSubmit">批量删除</el-button>
+                <el-button type="warning" icon="el-icon-plus" size="mini" @click="addGoods">添加商品</el-button>
+                <el-button type="danger" size="mini" icon="el-icon-delete" @click="batchDelete">批量删除</el-button>
             </div>
         </div>
-        <div></div>
-        <div class="content">
-            <!-- cell-class-name 单元格样式名 -->
+
+        <div class="list-table">
             <el-table :data="tableData" style="width: 100%" stripe border header-cell-class-name="table-center"
                 header-row-class-name="activate-header" >
                 <el-table-column type="selection" width="55"></el-table-column>
@@ -45,10 +46,11 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <!-- 分页组件 -->
-            <div class="pagination">
-                <Pagination :total="total" :pageSize="pageSize" @CurrentChange="CurrentChange"></Pagination>
-            </div>
+        </div>
+
+        <!-- 分页组件 -->
+        <div class="pagination">
+            <Pagination :total="total" :pageSize="pageSize" @CurrentChange="CurrentChange"></Pagination>
         </div>
     </div>
     
@@ -114,34 +116,32 @@ export  default {
     padding: 10px;
     margin-top: 10px;
     .search {
-        padding-bottom: 20px;
+      padding-bottom: 20px;
 
-        .el-form-item {
+      .el-form-item {
         margin-bottom: 0;
-        }
+      }
     }
+
     .add-goods {
-        background: #fff;
-        padding: 10px;
-        border: 1px solid #eee;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #eee;
     }
-}
+  }
 
 .content {
-    background-color: #fff;
+    // background-color: #fff;
 
-    /deep/ .activate-header {
-        color: #333;
-        text-align: center; // 确保表头内容居中
+    margin-top: 20px;
+
+    /deep/ .cell {
+      text-align: center;
     }
 
-    /deep/ .table-center {
-        text-align: center;
-    }
-
-    .pagination {
-        padding: 10px;
-    }
+    // .pagination {
+    //     padding: 10px;
+    // }
 }  
 
 }

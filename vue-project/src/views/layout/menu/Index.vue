@@ -3,7 +3,7 @@
         <el-menu :default-active="$route.path" class="el-menu-vertical-demo" background-color="#112f50" text-color="#fff" 
             active-text-color="#ffd04b" router :collapse="isCollapse">
             <el-menu-item>
-                <span slot="title">首客生鲜采购系统</span>
+                <span slot="title">安全研发管理系统</span>
             </el-menu-item>
             <el-menu-item index="/">
                 <i class="el-icon-menu"></i>
@@ -12,12 +12,12 @@
             <el-submenu index="/product">
                 <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span>产品管理</span>
+                    <span>研发管理</span>
                 </template>
                 <el-menu-item-group>
                     <el-menu-item index="/product/list">
                         <i class="el-icon-setting"></i>
-                        <span>产品列表</span>
+                        <span>应该列表</span>
                     </el-menu-item>
                     <el-menu-item index="/product/category">
                         <i class="el-icon-setting"></i>
