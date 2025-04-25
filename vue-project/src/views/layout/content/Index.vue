@@ -16,7 +16,9 @@
 
         <!-- 内容 -->
         <!-- 路由出口（二级路由） -->
-        <router-view></router-view>
+        <div class="wrapper">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -67,8 +69,10 @@ export default {
         text-align: right;
         padding-right: 20px;
     }
+}
 
-    
+.wrapper {
+    padding: 10px;
 }
 
 </style>

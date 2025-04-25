@@ -28,16 +28,20 @@
             <el-submenu index="/order">
                 <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span>订单管理</span>
+                    <span>安全报告管理</span>
                 </template>
                 <el-menu-item-group>
                     <el-menu-item index="/order/order-list">
                         <i class="el-icon-setting"></i>
-                        <span>订单列表</span>
+                        <span>静态代码报告</span>
                     </el-menu-item>
                     <el-menu-item index="/order/order-collect">
                         <i class="el-icon-setting"></i>
-                        <span>订单汇总</span>
+                        <span>动态代码报告</span>
+                    </el-menu-item>
+                    <el-menu-item index="/order/order-vul">
+                        <i class="el-icon-setting"></i>
+                        <span>漏洞扫描报告</span>
                     </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>

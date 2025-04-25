@@ -115,7 +115,7 @@ router.get("/goods/productList", (req, res) => {
         Mock.mock({
             status: 200,
             pageSize: 8,
-            total: 60,
+            total: 13,
             info: "数据统计",
             success: true,
             data: [{

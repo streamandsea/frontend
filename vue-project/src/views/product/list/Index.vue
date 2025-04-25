@@ -11,8 +11,8 @@
             el-date-picker 日期组件
          -->
         
-         <Breadcrumb></Breadcrumb>
-         <div class="header">
+        <Breadcrumb></Breadcrumb>
+        <div class="header">
             <div class="search">
                 <el-form :inline="true" :model="formInline" class="demo-form-inline">
                     <el-form-item label="产品名称">
@@ -26,17 +26,18 @@
                     </el-form-item>
                 </el-form>
             </div>
-            <div class="add-goods">
+            <div class="group">
                 <el-button type="warning" icon="el-icon-plus" size="mini" @click="addGoods">添加商品</el-button>
                 <el-button type="danger" size="mini" icon="el-icon-delete" @click="batchDelete">批量删除</el-button>
             </div>
         </div>
 
-        <div class="list-table">
+        <!-- 产品列表 -->
+        <div class="content">
             <el-table :data="tableData" style="width: 100%" stripe border header-cell-class-name="table-center"
-                header-row-class-name="activate-header" >
+                header-row-class-name="activate-header">
                 <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column prop="date" label="日期" :filters="[]" :filter-placement="null"> </el-table-column>
+                <el-table-column prop="date" label="日期" :filters="[]" :filter-placement="null" width="120"> </el-table-column>
                 <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
                 <el-table-column prop="address" label="地址" show-overflow-tooltip> </el-table-column>
                 <el-table-column label="操作" width="200">
@@ -70,6 +71,7 @@ export  default {
                 date: ''
             },
             tableData: [],
+            
             total:10,
             pageSize:1,
         }
@@ -108,13 +110,12 @@ export  default {
 </script>
 
 <style lang="less" scoped>
-.list {
-  padding: 10px;
 
 .header {
-    background: #fff;
+    // 背景色为灰色
+    background: #f5f5f5;
     padding: 10px;
-    margin-top: 10px;
+    margin-bottom: 20px;
     .search {
       padding-bottom: 20px;
 
@@ -123,26 +124,25 @@ export  default {
       }
     }
 
-    .add-goods {
+    .group {
       background: #fff;
       padding: 10px;
       border: 1px solid #eee;
     }
-  }
+}
 
 .content {
-    // background-color: #fff;
-
+    background: pink;
     margin-top: 20px;
 
     /deep/ .cell {
       text-align: center;
     }
 
-    // .pagination {
-    //     padding: 10px;
-    // }
+    /deep/ .activate-header {
+        color: #333;
+    }
+
 }  
 
-}
 </style>

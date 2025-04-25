@@ -61,6 +61,11 @@ const routes = [
             path: 'order-collect',
             name: 'order-collect',
             component: Collect
+          },
+          {
+            path: 'order-vul',
+            name: 'order-vul',
+            component: Collect
           }
         ]
       },

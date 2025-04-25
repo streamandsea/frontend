@@ -45,5 +45,6 @@ export  default {
 <style>
 .home {
     background-color: yellow;
+    padding: 10px;
 }
 </style>
