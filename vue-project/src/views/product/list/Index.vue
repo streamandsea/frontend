@@ -113,7 +113,7 @@ export  default {
 
 .header {
     // 背景色为灰色
-    background: #f5f5f5;
+    background: #fff;
     padding: 10px;
     margin-bottom: 20px;
     .search {

@@ -86,7 +86,7 @@ router.get("/home/orderinfo", (req, res) => {
  * 商品列表
  */
 router.get("/goods/productList", (req, res) => {
-    /*
+    
     // const page = req.query.page || 1;
     // const sqlLen = "select * from project where id";
     // sqlFn(sqlLen, null, (data) => {
@@ -109,8 +109,9 @@ router.get("/goods/productList", (req, res) => {
     //     }
     //   });
     // });
-    */
+
     
+    // Mock
     res.send(
         Mock.mock({
             status: 200,

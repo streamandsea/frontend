@@ -22,3 +22,24 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Appendix 
+
+#### echarts
+
+> https://echarts.apache.org/handbook/zh/get-started/
+
+- 安装
+
+```
+npm install echarts --save
+```
+
+- 导入echarts模块   
+
+```
+import * as echarts from 'echarts'
+```
+
+
