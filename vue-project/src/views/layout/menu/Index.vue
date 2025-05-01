@@ -12,12 +12,12 @@
             <el-submenu index="/product">
                 <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span>研发管理</span>
+                    <span>产品管理</span>
                 </template>
                 <el-menu-item-group>
                     <el-menu-item index="/product/list">
                         <i class="el-icon-setting"></i>
-                        <span>应用列表</span>
+                        <span>产品列表</span>
                     </el-menu-item>
                     <el-menu-item index="/product/category">
                         <i class="el-icon-setting"></i>
