@@ -1,18 +1,17 @@
 package com.wind.purchasebackend.service;
 
 import com.wind.purchasebackend.domain.Orderinfo;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-public interface ProductService {
+public interface OrderService {
 
     /**
      * 产品列表查询
      * @return
      */
-    List<Orderinfo> getProducts();
+    List<Orderinfo> getOrders();
 
     /**
      * 产品保存
