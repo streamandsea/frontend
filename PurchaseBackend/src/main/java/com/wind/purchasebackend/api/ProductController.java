@@ -5,6 +5,7 @@ import com.wind.purchasebackend.domain.Orderinfo;
 import com.wind.purchasebackend.service.ProductService;
 import com.wind.purchasebackend.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,4 +28,19 @@ public class ProductController {
         productService.saveProduct(orderinfo);
     }
 
+    //api/goods/productList/18
+    @DeleteMapping(path = "{productId}")
+    public void deleteProductById(@PathVariable Long productId) {
+        // productService.deleteProductById(productId);
+        // return PlainResult.success(null);
+        productService.deleteById(productId);
+    }
+
+    @PutMapping(path="{productId}")
+    @Transactional
+    public void updateProductById(@PathVariable Long productId,
+                                  @RequestParam String ordername,
+                                  @RequestParam String price) {
+        productService.updateProductById(productId, ordername, price);
+    }
 }

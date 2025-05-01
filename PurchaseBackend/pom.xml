@@ -73,7 +73,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.wind.purchasebackend.PurchaseBackendApplication</mainClass>
-                    <skip>true</skip>
+<!--                    <skip>true</skip>-->
                 </configuration>
                 <executions>
                     <execution>

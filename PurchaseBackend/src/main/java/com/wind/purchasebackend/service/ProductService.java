@@ -19,4 +19,18 @@ public interface ProductService {
      * @param orderinfo
      */
     void saveProduct(Orderinfo orderinfo);
+
+    /**
+     * 根据id删除产品
+     * @param productId
+     */
+    void deleteById(Long productId);
+
+    /**
+     * 根据id更新产品
+     * @param productId
+     * @param ordername
+     * @param price
+     */
+    void updateProductById(Long productId, String ordername, String price);
 }
