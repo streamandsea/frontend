@@ -99,6 +99,7 @@
 <script>
 
 import * as echarts from 'echarts';
+// import { ElMain } from 'element-ui/types/main';
 
 export  default {
     data() {
@@ -115,8 +116,8 @@ export  default {
     // 最早获取dom元素的--挂在完毕
     mounted() {
         // console.log('moundted()', document.getElementById('charts'));
-        this.line2()
-        this.pie()
+        // this.line2()
+        // this.pie()
         this.format()
     },
     methods: {
@@ -135,21 +136,30 @@ export  default {
         // 获取图表动态数据
         async format() {
             let res = await this.$api.format()
-            console.log('获取图表动态数据---', res.data)
-            console.log(res.data.result.data.sale_money) // [{},{},{}]
+            console.log('获取图表动态数据---', res.data.result.data.sale_money)
+            // console.log(res.data.result.data.sale_money) // [{},{},{}]
             
             // 折线图 柱状图数据格式: [xx, xx, xx]
             // 获取x轴的数据名称
             let arr = res.data.result.data.sale_money;
-            let arrx=[],yarr1=[],yarr2=[];
+            let arrx=[],money=[],total=[],pieData=[];
             arr.forEach(element => {
                 arrx.push(element.name)
-                yarr1.push(element.num)
-                yarr2.push(element.total_amount);
+                total.push(element.num)
+                money.push(element.total_amount);
+
+                // 并图数据
+                let obj={}
+                obj.name = element.name;
+                obj.value = element.total_amount;
+                pieData.push(obj) // [{name:,value:},{},{}]
             });
-            console.log(arrx)
-            console.log(yarr1)
-            console.log(yarr2)
+            // console.log(arrx)
+            // console.log(money)
+            // console.log(total)
+            this.line2(arrx, money, total)
+            this.pie(pieData);
+            console.log('pie data',pieData);
         },
         // 绘制图表--折线
         line() {
@@ -191,7 +201,7 @@ export  default {
                 ]
             });
         },
-        line2() {
+        line2(data, money, total) {
             var myChart = echarts.init(document.getElementById('charts'));
             myChart.setOption({
                 tooltip: {
@@ -206,31 +216,33 @@ export  default {
                     }
                 },
                 xAxis: { // x轴数据
-                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                    data: data
                 },
                 yAxis: {},
                 series: [ 
                     {
                         name: '销售额',
                         type: 'line',
-                        data: [15, 30, 66, 40, 20, 20],
+                        data: money,
                         smooth: true,
                     },
                     {
                         name: '销售量',
                         type: 'bar',
-                        data: [5, 20, 36, 10, 10, 10],
+                        data: total,
                     }
                 ]
             });
         },
-        pie() {
+        pie(pieData) {
+            console.log(pieData)
             var myChart = echarts.init(document.getElementById('pie'));
             var option;
 
             option = {
                 tooltip: {
-                    trigger: 'item'
+                    trigger: 'item',
+                    formatter: '{a}<br>{b}:{d}%'
                 },
                 legend: {
                     orient: 'vertical',
@@ -238,14 +250,16 @@ export  default {
                 },
                 series: [
                     {
-                    name: '产品销售比例',
+                    name: '产品销售额',
                     type: 'pie',
                     radius: '50%',
-                    data: [
-                        { value: 1048, name: '审计' },
-                        { value: 735, name: '淘宝' },
-                        { value: 580, name: '京东' },
-                    ],
+                    data: pieData
+                    // [
+                    //     { value: 1048, name: '审计' },
+                    //     { value: 735, name: '淘宝' },
+                    //     { value: 580, name: '京东' },
+                    // ]
+                    ,
                     emphasis: { // 高亮配置
                         itemStyle: {
                             shadowBlur: 10,
