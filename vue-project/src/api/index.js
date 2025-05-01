@@ -18,6 +18,12 @@ const api = {
         return axios.get(base.orderInfo);
     },
     /**
+     * 图表数据
+     */
+    format() {
+        return axios.get(base.format);
+    },
+    /**
      * 产品列表
      */
     productList(params) {

@@ -42,4 +42,8 @@ npm install echarts --save
 import * as echarts from 'echarts'
 ```
 
+- 准备dom元素容器
+
+- 实例化配置图表
+
 

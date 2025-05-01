@@ -8,6 +8,10 @@ import api from './api'
 
 Vue.prototype.$api = api;
 
+// 所有的组件通过this.$echarts来使用
+// import * as echarts from 'echarts'
+// Vue.prototype.$echarts = echarts;
+
 Vue.config.productionTip = false;
 
 new Vue({

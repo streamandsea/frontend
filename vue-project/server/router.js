@@ -8,8 +8,9 @@ const fs = require('fs');
 // 路由---接口地址
 // 导入mockjs
 const Mock = require("mockjs");
+
 // 数据
-// const data = require("./data/format.json");
+const data = require("./data/format.json");
 
 
 // 首页-销量额等数据统计
@@ -80,6 +81,13 @@ router.get("/home/orderinfo", (req, res) => {
         },
         })
 );
+});
+
+/**
+ * 首页折线图数据统计 月销量、月销售额
+ */
+router.get("/home/format", (req, res) => {
+    res.send(data);
 });
 
 /**

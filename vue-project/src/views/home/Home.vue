@@ -28,9 +28,12 @@
         <div class="content">
             <div class="time-info" id='box13'>
                 <div class="title">月销售额</div>
-                <div id="charts" style="width: 100%; height:300px"></div>
+                <div id="charts" style="width: 100%; height:300px">123</div>
             </div>
-            <div class="area" id="box1">比例分配</div>
+            <div class="area" id="box1">
+                <div class="title">产品销售比例</div>
+                <div id="pie" style="width: 100%; height:300px"></div>
+            </div>
         </div>
 
         <!-- 3.最新内容 -->
@@ -94,6 +97,9 @@
 </template>
 
 <script>
+
+import * as echarts from 'echarts';
+
 export  default {
     data() {
         return {
@@ -104,19 +110,154 @@ export  default {
     created() {
         this.totalInfo();
         this.orderInfo();
+        console.log('created()', document.getElementById('charts'));
+    },
+    // 最早获取dom元素的--挂在完毕
+    mounted() {
+        // console.log('moundted()', document.getElementById('charts'));
+        this.line2()
+        this.pie()
+        this.format()
     },
     methods: {
         // 获取数据统计-------------------------------------
         async totalInfo() {
             const res = await this.$api.totalInfo();
             console.log('首页统计信息---', res);
-            this.totalData = res.data.data.list;
+            this.totalData = res.data;
         },
         // 获取今日订单统计信息
         async orderInfo() {
             const res = await this.$api.orderInfo();
             console.log('今日订单统计信息---', res);
             this.orderData = res.data.list;
+        },
+        // 获取图表动态数据
+        async format() {
+            let res = await this.$api.format()
+            console.log('获取图表动态数据---', res.data)
+            console.log(res.data.result.data.sale_money) // [{},{},{}]
+            
+            // 折线图 柱状图数据格式: [xx, xx, xx]
+            // 获取x轴的数据名称
+            let arr = res.data.result.data.sale_money;
+            let arrx=[],yarr1=[],yarr2=[];
+            arr.forEach(element => {
+                arrx.push(element.name)
+                yarr1.push(element.num)
+                yarr2.push(element.total_amount);
+            });
+            console.log(arrx)
+            console.log(yarr1)
+            console.log(yarr2)
+        },
+        // 绘制图表--折线
+        line() {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('charts'));
+            // 绘制图表
+            myChart.setOption({
+                // title: {
+                //     text: 'ECharts 入门示例'
+                // },
+                tooltip: {},
+                xAxis: { // x轴数据
+                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                },
+                yAxis: { // y轴会自动创建数据
+
+                },
+                series: [ // 图标内容
+                    {
+                        name: '销量',
+                        type: 'line',
+                        data: [5, 20, 36, 10, 10, 20],
+                        label: { // 图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等
+                            show: true,
+                        },
+                        labelLine: {
+                            lineStyle: {
+                                color: '#ff5555'
+                            }
+                        },
+                        itemStyle: { 
+                            color: '#ff5555'
+                        },
+                        lineStyle: {
+                            color: '#ff5555'
+                        },
+                        smooth: true,
+                    }
+                ]
+            });
+        },
+        line2() {
+            var myChart = echarts.init(document.getElementById('charts'));
+            myChart.setOption({
+                tooltip: {
+                    // 提示框组件
+                    trigger: 'axis',
+                },
+                legend: {
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: { // x轴数据
+                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                },
+                yAxis: {},
+                series: [ 
+                    {
+                        name: '销售额',
+                        type: 'line',
+                        data: [15, 30, 66, 40, 20, 20],
+                        smooth: true,
+                    },
+                    {
+                        name: '销售量',
+                        type: 'bar',
+                        data: [5, 20, 36, 10, 10, 10],
+                    }
+                ]
+            });
+        },
+        pie() {
+            var myChart = echarts.init(document.getElementById('pie'));
+            var option;
+
+            option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left'
+                },
+                series: [
+                    {
+                    name: '产品销售比例',
+                    type: 'pie',
+                    radius: '50%',
+                    data: [
+                        { value: 1048, name: '审计' },
+                        { value: 735, name: '淘宝' },
+                        { value: 580, name: '京东' },
+                    ],
+                    emphasis: { // 高亮配置
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                    }
+                ]
+            };
+
+            option && myChart.setOption(option);
         }
     },
     // 过滤器：处理数据格式

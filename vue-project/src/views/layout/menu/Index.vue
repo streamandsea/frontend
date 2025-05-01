@@ -17,7 +17,7 @@
                 <el-menu-item-group>
                     <el-menu-item index="/product/list">
                         <i class="el-icon-setting"></i>
-                        <span>应该列表</span>
+                        <span>应用列表</span>
                     </el-menu-item>
                     <el-menu-item index="/product/category">
                         <i class="el-icon-setting"></i>
