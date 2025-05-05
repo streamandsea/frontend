@@ -46,6 +46,14 @@
                         <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" icon="el-icon-delete">删除</el-button>
                     </template>
                 </el-table-column>
+                <el-table-column label="操作" width="200">
+                    <template slot-scope="scope">
+                        <el-select v-model="selectedActions[scope.$index]" size="small" multiple placeholder="请选择操作">
+                            <el-option label="编辑" value="edit"></el-option>
+                            <el-option label="删除" value="delete"></el-option>
+                        </el-select>
+                    </template>
+                </el-table-column>
             </el-table>
         </div>
 
@@ -71,6 +79,7 @@ export  default {
                 date: ''
             },
             tableData: [],
+            selectedActions: {},
             
             total:10,
             pageSize:1,
@@ -89,6 +98,14 @@ export  default {
         handleDelete(index, row) {
             console.log(index, row);
         },
+        handleSelectChange(index, row, actions) {
+            if (actions.includes('edit')) {
+                console.log('编辑', index, row);
+            }
+            if (actions.includes('delete')) {
+                console.log('删除', index, row);
+            }
+        },
         CurrentChange(val) {
             console.log('---val---页码:', val);
             this.productList(val);
@@ -100,6 +117,18 @@ export  default {
             this.tableData = res.data.data;
             this.total = res.data.total;
             this.pageSize = res.data.pageSize;
+        }
+    },
+    watch: {
+        selectedActions: {
+            deep: true,
+            handler(selectedActions) {
+                for (let index in selectedActions) {
+                    const row = this.tableData[index];
+                    const actions = selectedActions[index];
+                    this.handleSelectChange(index, row, actions);
+                }
+            }
         }
     },
     created() {
