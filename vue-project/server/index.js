@@ -11,12 +11,12 @@ app.use(express.urlencoded({ extended: true }))
 // 路由
 const router = require('./router')
 // 订单
-// const order = require('./order')
+const order = require('./order')
 // 广告
 // const advert = require('./advert')
 
 app.use('/', router)
-// app.use('/order', order)
+app.use('/order', order)
 // app.use('/advert', advert)
 
 app.listen(7788, () => {

@@ -28,7 +28,14 @@ const api = {
      */
     productList(params) {
         return axios.get(base.productList,{params});
-    }
+    },
+
+    // /**
+    //  * 订单列表
+    //  */
+    // orderList(params){
+    //     return axios.get(base.orderList,{params})
+    // }
 };
 
 export default api;
