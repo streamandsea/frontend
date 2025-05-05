@@ -1,5 +1,6 @@
 package com.wind.purchasebackend.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wind.purchasebackend.domain.Orderinfo;
 
 import java.util.List;
@@ -32,4 +33,12 @@ public interface OrderService {
      * @param price
      */
     void updateProductById(Long productId, String ordername, String price);
+
+    /**
+     * 分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    IPage<Orderinfo> getOrdersByPage(Integer pageNum, Integer pageSize);
 }

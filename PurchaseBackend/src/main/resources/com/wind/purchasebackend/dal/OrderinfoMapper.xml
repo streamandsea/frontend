@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.orderinfoMapper">
+<mapper namespace="com.wind.purchasebackend.dal.OrderMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.orderinfo">
+    <resultMap id="BaseResultMap" type="com.wind.purchasebackend.domain.Orderinfo">
             <id property="id" column="id" />
             <result property="code" column="code" />
             <result property="ordername" column="ordername" />

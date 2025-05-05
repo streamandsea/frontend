@@ -1,5 +1,7 @@
 package com.wind.purchasebackend.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wind.purchasebackend.dal.OrderMapper;
 import com.wind.purchasebackend.domain.Orderinfo;
 import org.springframework.stereotype.Service;
@@ -59,5 +61,10 @@ public class OrderServiceImpl implements OrderService {
             select.setPrice(price);
         }
         orderMapper.updateById(select);
+    }
+
+    @Override
+    public IPage<Orderinfo> getOrdersByPage(Integer pageNum, Integer pageSize) {
+        return orderMapper.selectPage(new Page<>(pageNum, pageSize), null);
     }
 }
