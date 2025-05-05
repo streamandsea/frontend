@@ -25,7 +25,7 @@
         <div class="content">
             <el-table :data="tableData" style="width: 100%" stripe border header-cell-class-name="table-center"
                 header-row-class-name="activate-header">
-                <el-table-column type="selection" width="55"></el-table-column>
+                <el-table-column type="selection" width="55" :selectable="selectable"></el-table-column>
                 <el-table-column prop="code" label="订单编号">
                     <template slot-scope="scope">
                     <span @click="OrderDecs(scope.row)" style="color:blue;cursor: pointer;">{{ scope.row.code }}</span>
@@ -34,6 +34,11 @@
                 <el-table-column prop="ordername" label="下单人"></el-table-column>
                 <el-table-column prop="company" label="所属单位"></el-table-column>
                 <el-table-column prop="phone" label="联系电话"></el-table-column>
+                <el-table-column prop="yudingTime" label="预定时间">
+                    <template slot-scope="scope">
+                    <span>{{ dayjs(scope.row.yudingTime).format('YYYY-MM-DD HH:mm:ss') }}</span>
+                    </template>
+                </el-table-column>
                 <el-table-column prop="price" label="订单总价格"></el-table-column>
                 <el-table-column prop="huizongStatus" label="汇总状态">
                     <template slot-scope="scope">
@@ -53,6 +58,7 @@
 
 <script>
 import { orderList } from '@/api/order'
+import dayjs from 'dayjs'
 import Pagination from "@/components/pagination/Pagination.vue";
 
 export  default {
@@ -68,10 +74,15 @@ export  default {
         }
     },
     methods: {
-        // async orderList(page) {
-        //     let res = await this.$api.orderList({page})
-        //     console.log('订单列表---', res.data)
-        // }
+        dayjs,
+        selectable(row, index) {
+            console.log(row, index);
+            if (row.huizongStatus == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         async orderList(page) {
             // let res = await this.$api.orderList()
             // console.log('订单列表---', res.data)
