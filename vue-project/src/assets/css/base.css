@@ -19,3 +19,8 @@ body {
     padding: 0; /* 移除默认内边距 */
     background: #f5f5ff;
 }
+
+/*高度配置*/
+html,body,#app {
+    height: 100%;
+}
