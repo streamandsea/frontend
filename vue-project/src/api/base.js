@@ -10,6 +10,9 @@ const base = {
     orderList:"/api/order/list", // 订单列表 page
     // orderList:"api/goods/orderList",
     changeStatus:"/api/order/changeStatus", // 订单汇总
+    collect:"/api/order/collect", // 汇总清单列表 page
+    // cancel:"/api/order/cancel", // 撤销汇总 id
+    // detail:"/api/order/list/detail", // 订单详情 id
 
 }
 

@@ -16,7 +16,7 @@
                 </el-form>
             </div>
             <div class="group">
-                <el-button type="warning" size="mini" >订单汇总</el-button>
+                <el-button type="warning" size="mini" @click="orderCollect">订单汇总</el-button>
                 <el-button type="danger" size="mini"  >导出</el-button>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <!-- 产品列表 -->
         <div class="content">
             <el-table :data="tableData" style="width: 100%" stripe border header-cell-class-name="table-center"
-                header-row-class-name="activate-header">
+                header-row-class-name="activate-header" @select="select">
                 <el-table-column type="selection" width="55" :selectable="selectable"></el-table-column>
                 <el-table-column prop="code" label="订单编号">
                     <template slot-scope="scope">
@@ -71,10 +71,41 @@ export  default {
             tableData: [],
             total: 10,
             pageSize: 1,
+            ids: [], // 操作id数组集合
         }
     },
     methods: {
         dayjs,
+        // 订单汇总----1.获取选中的订单 2.提交汇总 3.修改汇总状态--------------------------
+        orderCollect() {
+            // 判断ids长度 至少>=2 
+            if (this.ids.length >= 2) {
+                // 汇总清单
+                this.$api.changeStatus({ ids: this.ids.join(',') })
+                .then(res => {
+                    console.log('订单汇总:', res.data);
+                })
+            } else {
+                // this.$alert('汇总订单至少需要2条订单信息', '汇总订单', {
+                //     confirmButtonText: '确定',
+                //     callback: action => {
+                //         this.$message({
+                //         type: 'info',
+                //         message: `取消汇总`
+                //         });
+                //     }
+                // });
+            }
+        },
+        // 选中勾选内容
+        select(selection, row) {
+            console.log(selection, row);
+            let arr = []
+            selection.forEach(ele=>{
+                arr.push(ele.id)
+            })
+            this.ids = arr;
+        },
         selectable(row, index) {
             console.log(row, index);
             if (row.huizongStatus == 1) {
