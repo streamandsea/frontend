@@ -8,8 +8,8 @@
                 <i v-else class="iconfont icon-left-indent" @click="changeMenu"></i>
             </div>
             <div class="header-right">
-                <span>{{ nowTime }}</span> |
-
+                <span>{{ nowTime }}</span> 
+                <span class="line">|</span>
                 <el-dropdown @command="changeLang">
                     <span class="el-dropdown-link" style="color: #fff">
                         语言环境<i class="el-icon-arrow-down el-icon--right"></i>
@@ -17,10 +17,13 @@
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="zh">中文</el-dropdown-item>
                         <el-dropdown-item command="en">English</el-dropdown-item>
-                    </el-dropdown-menu> | 
-
-                    <span> 欢迎 {{ userinfo.username }}</span> | 
-                    <span class="el-icon-switch-button icon" @click="loginOut"></span>
+                    </el-dropdown-menu> 
+                    <span class="line">|</span>
+                    <span class="welcome">欢迎 {{userinfo.username}}</span>
+                    <span class="line">|</span> 
+                    <span class="exit" @click="loginout">
+                        <i class="iconfont icon-tuichu"></i>
+                    </span>
                 </el-dropdown>
 
             </div>
@@ -82,7 +85,7 @@ export default {
     color: #fff;
     width: 100%;
     display: flex;
-    
+
     .icon {
         i {
             font-size: 24px;
@@ -94,6 +97,42 @@ export default {
         flex: 1;
         text-align: right;
         padding-right: 20px;
+
+        .el-dropdown-link {
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .el-icon-arrow-down {
+            font-size: 12px;
+        }
+
+        .line {
+            font-size: 12px;
+            color: #f5f5f5f5;
+            padding: 10px;
+        }
+
+        .exit {
+            // display: inline-block;
+            float: right;
+            position: relative;
+            height: 50px;
+            width: 30px;
+            color: white;
+
+            i {
+                font-size: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                position: absolute;
+                right: 0;
+            }
+        }
+
+        .welcome {
+            color: white;
+        }
     }
 }
 
