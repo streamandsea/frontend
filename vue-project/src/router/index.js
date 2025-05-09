@@ -23,6 +23,10 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    meta:{
+      title: '首页',
+      isLogin: true, // 是否需要登录
+    },
     // 二级路由
     children: [
       {
@@ -95,5 +99,23 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// 配置路由全局前置首位导航------------
+import store from '@/store'
+router.beforeEach((to, from, next) => {
+   // 判断进入的路由界面是否需要登录 不需要登录直接进入
+   // https://v3.router.vuejs.org/guide/advanced/meta.html
+   if (to.matched.some(ele => ele.meta.isLogin)) {
+    // 需要登录 --- 1.判断是否已经登录了 token值是否存在
+    if (store.state.login.userinfo.token) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
+})
+
 
 export default router
