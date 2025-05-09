@@ -68,6 +68,29 @@ const api = {
     // changeStatus(params) {
     //     return axios.get(base.changeStatus, params);
     // }
+
+    /**
+     * 登录
+     * {
+     *  user,
+     *  pwd
+     * }
+     */
+    login(params) {
+        return axios.post(base.login, params)
+    },
+
+    /**
+     * 权限
+     * {
+     *  token:
+     * }
+     */
+    permission(params) {
+        return axios.get(base.permission, {
+            params
+        })
+    }
 }
 
 export default api;

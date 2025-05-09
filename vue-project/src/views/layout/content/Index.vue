@@ -8,9 +8,21 @@
                 <i v-else class="iconfont icon-left-indent" @click="changeMenu"></i>
             </div>
             <div class="header-right">
-                <span>{{ nowTime }}</span>
-                <span class="line">|</span>
-                
+                <span>{{ nowTime }}</span> |
+
+                <el-dropdown @command="changeLang">
+                    <span class="el-dropdown-link" style="color: #fff">
+                        语言环境<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="zh">中文</el-dropdown-item>
+                        <el-dropdown-item command="en">English</el-dropdown-item>
+                    </el-dropdown-menu> | 
+
+                    <span> 欢迎 {{ userinfo.username }}</span> | 
+                    <span class="el-icon-switch-button icon" @click="loginOut"></span>
+                </el-dropdown>
+
             </div>
         </div>
 
@@ -24,7 +36,7 @@
 
 <script>
 import dayjs from 'dayjs'
-// import { mapMutations, mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
 
@@ -34,9 +46,23 @@ export default {
             nowTime: ''
         }
     },
+    computed: {
+        ...mapState('login', ['userinfo']),
+    },
     methods: {
         changeMenu() {
             this.$emit('changeShow')
+        },
+        // 退出登录--- 1.清空store仓库 2.跳转登录界面
+        loginOut() {
+            console.log('退出登录')
+
+            localStorage.removeItem('info')
+
+            this.$router.push('/login')
+        },
+        changeLang() {
+            console.log('切换语言')
         }
     },
     created() {

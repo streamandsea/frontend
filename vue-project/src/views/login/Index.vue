@@ -22,9 +22,9 @@
                  />
              </div>
              <p class="login--btn">
-                 <el-button id="loginBtn" type="primary" @click="getLogin">登录</el-button>
+                 <el-button id="loginBtn" type="primary" @click="login">登录</el-button>
              </p>
-             <!-- <p>账号和密码随意输入---账号: admin是超级管理员</p> -->
+             <p class="info">账号和密码随意输入---账号: admin是超级管理员</p>
          </div>
      </div>
  </template>
@@ -40,23 +40,27 @@
      },
      methods:{
        ...mapMutations('login',['setUser']),
-       //点击登录--------------------
-       getLogin(){
-         this.login(this.username,this.password);
-       },  
        //登录接口----------------------------------------------
-       async login(user,pwd){
-         let res = await this.$api.login({user,pwd})
-         console.log(res.data);
-         if(res.data.status===200){
-             let obj={
-               user,
-               token:res.data.token
-             }
-             //设置store仓库
-             this.setUser(obj)
-             //跳转网页
-             this.$router.push('/')
+       async login(){
+        let res = await this.$api.login({
+            user: this.username,
+            pwd: this.password
+        })
+        console.log('res=',res);
+        console.log(res.data);
+        if(res.data.status===200){
+
+            // 1.设置store仓库
+            // this.setUser({username: this.username, token: res.data.token})
+            let obj={
+              username: this.username,
+              token: res.data.token
+            }
+            //设置store仓库
+            this.setUser(obj)
+
+            // 2.登录成功---进入首页
+            this.$router.push('/')
          }
        }
      }
@@ -135,5 +139,12 @@
          }
      }
  }
+
+ .info {
+    color: #999;
+    margin-top: 8px;
+    text-align: center !important;
+ }
+
  </style>
  

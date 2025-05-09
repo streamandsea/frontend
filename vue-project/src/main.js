@@ -13,6 +13,7 @@ Vue.prototype.$api = api;
 // Vue.prototype.$echarts = echarts;
 
 Vue.config.productionTip = false;
+// Vue.config.devtools = true;
 
 new Vue({
   router,

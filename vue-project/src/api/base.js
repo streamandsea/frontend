@@ -14,6 +14,10 @@ const base = {
     // cancel:"/api/order/cancel", // 撤销汇总 id
     // detail:"/api/order/list/detail", // 订单详情 id
 
+    // 登录
+    login: "/api/login", // 登录接口 user pwd --- post
+    permission: "/api/permission", // 用户权限 token
+
 }
 
 // 单一导出
