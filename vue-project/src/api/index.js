@@ -87,9 +87,7 @@ const api = {
      * }
      */
     permission(params) {
-        return axios.get(base.permission, {
-            params
-        })
+        return axios.get(base.permission, { params });
     }
 }
 

@@ -53,6 +53,22 @@
                     </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
+            <el-submenu index="/system">
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>系统管理</span>
+                </template>
+                <el-menu-item-group>
+                    <el-menu-item index="/system/role">
+                        <i class="el-icon-setting"></i>
+                        <span>角色管理</span>
+                    </el-menu-item>
+                    <el-menu-item index="/system/department">
+                        <i class="el-icon-setting"></i>
+                        <span>部门管理</span>
+                    </el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
         </el-menu>
     </div>
 </template>

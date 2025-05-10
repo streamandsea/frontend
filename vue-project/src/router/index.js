@@ -17,6 +17,11 @@ const Collect = () => import('@/views/order/collect/Index.vue')
 const Advert = () => import('@/views/advert/Index.vue')
 const AdvertList = () => import('@/views/advert/list/Index.vue')
 
+// 系统管理
+const SystemManage = () => import('@/views/SystemManage')
+const department = () => import('@/views/SystemManage/department/index.vue')
+const role = () => import('@/views/SystemManage/role/index.vue')
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -85,6 +90,33 @@ const routes = [
           },
         ]
       },
+      {
+        path: '/system',
+        name: 'system',
+        component: SystemManage,
+        redirect: '/system/role',
+        // meta: {
+        //   title: '系统管理',
+        // },
+        children: [
+          {
+            path: 'role',
+            name: 'role',
+            component: role,
+            // meta: {
+            //   title: '角色管理',
+            // }
+          },
+          {
+            path: 'department',
+            name: 'department',
+            component: department,
+            // meta: {
+            //   title: '部门管理',
+            // }
+          },
+        ]
+      },
     ]
   },
   {
@@ -99,23 +131,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-// 配置路由全局前置首位导航------------
-import store from '@/store'
-router.beforeEach((to, from, next) => {
-   // 判断进入的路由界面是否需要登录 不需要登录直接进入
-   // https://v3.router.vuejs.org/guide/advanced/meta.html
-   if (to.matched.some(ele => ele.meta.isLogin)) {
-    // 需要登录 --- 1.判断是否已经登录了 token值是否存在
-    if (store.state.login.userinfo.token) {
-      next()
-    } else {
-      next('/login')
-    }
-  } else {
-    next() // make sure to always call next()!
-  }
-})
-
 
 export default router

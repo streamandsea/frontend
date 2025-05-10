@@ -21,7 +21,7 @@
                     <span class="line">|</span>
                     <span class="welcome">欢迎 {{userinfo.username}}</span>
                     <span class="line">|</span> 
-                    <span class="exit" @click="loginout">
+                    <span class="exit" @click="loginOut">
                         <i class="iconfont icon-tuichu"></i>
                     </span>
                 </el-dropdown>

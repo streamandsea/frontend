@@ -92,6 +92,9 @@ export  default {
         addGoods() {
             console.log('add goods');
         },
+        batchDelete() {
+            console.log('batch delete');
+        },
         handleEdit(index, row) {
             console.log(index, row);
         },
