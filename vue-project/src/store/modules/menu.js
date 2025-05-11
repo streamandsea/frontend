@@ -5,6 +5,16 @@
 // import permission from '@/api/index'
 import api from '@/api/index'
 
+// 导入前端定义好的完整的路由信息
+import { menu } from '@/router/menu'
+
+// 导入路由 和基本的路由信息
+import /*router,*/{baseRoutes}  from '@/router/index'
+
+// 导入方法 -- 筛选路由
+import { rulesMenu } from '@/utils/common'
+
+import {cloneDeep} from 'lodash'
 
 export default {
     namespaced: true,
@@ -23,13 +33,30 @@ export default {
         }
     },
     actions: {
-        // 定义请求动态路由信息的接口方法------token------
-        async getMenuList({ /*commit,*/ rootState }) {
+        // 定义请求动态菜单导航信息的接口方法------token------
+        async getMenuList({ commit, rootState }) {
             console.log("rootState", rootState);
             console.log('rootState.login.userinfo.token', rootState.login.userinfo.token);
             // let res = await permission({token: rootState.login.userinfo.token})
             let res = await api.permission({ token: rootState.login.userinfo.token });
             console.log('后端返回的导航菜单内容:---', res.data)
+            console.log('前端定义的导航才当内容------', menu)
+            // 处理前后端的菜单导航数组 根据后端返回的导航标识 匹配对应的真实的路由菜单导航
+            // 定义一个方法 处理数组 -- 返回匹配好的菜单导航
+            let myMenu = rulesMenu(menu, res.data.data)
+            console.log('处理好的菜单导航', myMenu)
+
+            // 存储动态菜单导航--------
+            commit('setMenuList', myMenu)
+
+            // 需要把匹配好的路由数据追加到 layout界面 baseRoutes=[{path:'/', name:Layout, children:[{home},]}]
+            let mybaseRoutes = cloneDeep(baseRoutes);
+            mybaseRoutes[0].children.push(...myMenu)
+
+            console.log('mybaseRoutes', mybaseRoutes);
+
+            // 添加到路由界面
+            return mybaseRoutes;
         },
     }
 }

@@ -8,15 +8,11 @@
         2. 渲染的时候需要判断当前的导航路径是否由children 
           有children 长度>0 说明有二级或者多级导航 
           没有children属性  说明一级导航
-
      -->
-    <template v-for="(item, index) in menulist">
-
-      <el-submenu 
-        :index="item.name"
-        :key="index"
-        v-if="(item.children && item.children.length>0)"
-      >
+    
+    <template v-for="(item, index) in dyMenuList">
+      <!-- 多级菜单 -->
+      <el-submenu :index="item.path" :key="index" v-if="(item.children && item.children.length>0)">
         <template slot="title">
           <i class="el-icon-s-cooperation"></i>
           <span slot="title">{{item.meta.title}}</span>
@@ -27,13 +23,8 @@
         </el-menu-item-group>
       </el-submenu>
 
-      <el-menu-item
-        :index="item.name"
-        :key="(index +100)"
-        v-else
-        @click="tiao(item.name)"
-        v-show="!item.meta.isShow"
-      >
+      <!-- 一级菜单 -->
+      <el-menu-item :index="item.name" :key="(index +100)" v-else @click="tiao(item.name)" v-show="!item.meta.isShow">
         <i class="el-icon-menu"></i>
         <span slot="title">{{item.meta.title}}</span>
       </el-menu-item>
@@ -42,6 +33,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name:'menuList',
   props: ['menulist'],
@@ -55,6 +47,12 @@ export default {
   },
   mounted() {
     console.log('menulistmenulistmenulist-----', this.menulist);
+  },
+  computed: {
+    ...mapState('menu', ['dyMenuList'])
+  },
+  created() {
+    console.log('动态菜单导航目录', this.dyMenuList);
   }
 
 }
